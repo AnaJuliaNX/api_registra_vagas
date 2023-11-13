@@ -9,6 +9,6 @@ import (
 // Mostra uma vaga
 func ListOpenings(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
-		"message": "GET opening",
+		"message": "GET openings",
 	})
 }
