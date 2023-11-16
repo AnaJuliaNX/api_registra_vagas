@@ -16,6 +16,7 @@ type CreateOpeningRequest struct {
 }
 
 func (r *CreateOpeningRequest) Validate() error {
+
 	if r.Role == "" {
 		return naoPodesernulo("role", "string")
 	}
