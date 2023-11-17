@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Código para exibir a mensagem de erro
 func errorMessage(ctx *gin.Context, code int, msg string) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(code, gin.H{
@@ -15,6 +16,7 @@ func errorMessage(ctx *gin.Context, code int, msg string) {
 	})
 }
 
+// Código para exibir a mensagem de sucesso no fim do código
 func successMessage(ctx *gin.Context, op string, data interface{}) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(http.StatusOK, gin.H{

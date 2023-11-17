@@ -22,7 +22,7 @@ func CreateOpening(ctx *gin.Context) {
 		return
 	}
 
-	oppening := schemas.Openings{
+	opening := schemas.Openings{
 		Role:     request.Role,
 		Company:  request.Company,
 		Location: request.Location,
@@ -31,11 +31,12 @@ func CreateOpening(ctx *gin.Context) {
 		Salary:   int64(request.Salary),
 	}
 
-	err := db.Create(&oppening).Error
+	//Faço a conexão com o banco
+	err := db.Create(&opening).Error
 	if err != nil {
-		logger.Errorf("erro ao criar opening: %v", err.Error())
-		errorMessage(ctx, http.StatusInternalServerError, "erro ao criar o opening na database")
+		logger.Errorf("erro ao criar a vaga: %v", err.Error())
+		errorMessage(ctx, http.StatusInternalServerError, "erro ao criar a vaga no banco de dados")
 		return
 	}
-	successMessage(ctx, "create-Opening", oppening)
+	successMessage(ctx, "create-Opening", opening)
 }

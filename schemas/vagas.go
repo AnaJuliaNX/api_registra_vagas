@@ -18,7 +18,7 @@ type Openings struct {
 }
 
 // Estrutura que retono do banco e transformo em json
-type OpeningREsponse struct {
+type OpeningResponse struct {
 	ID        int64     `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`

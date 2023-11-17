@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"api_registraVagas/schemas"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -8,7 +9,11 @@ import (
 
 // Mostra uma vaga
 func ListOpenings(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "GET openings",
-	})
+	openings := []schemas.Openings{}
+	err := db.Find(&openings).Error
+	if err != nil {
+		errorMessage(ctx, http.StatusInternalServerError, "erro ao listar as vagas")
+		return
+	}
+	successMessage(ctx, "list-openings", openings)
 }
