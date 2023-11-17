@@ -8,21 +8,21 @@ import (
 )
 
 // Cria uma nova vaga
-func CreateOpening(ctx *gin.Context) {
-	request := CreateOpeningRequest{}
+func VagaCreate(ctx *gin.Context) {
+	request := CreateVagaRequest{}
 
 	//Popula o meu request
 	ctx.BindJSON(&request)
 
 	//Faz as validações que escrevi
-	err1 := request.Validate()
-	if err1 != nil {
-		logger.Errorf("erro de validação: %v", err1.Error())
-		errorMessage(ctx, http.StatusBadRequest, err1.Error())
+	err := request.Validate()
+	if err != nil {
+		logger.Errorf("erro de validação: %v", err.Error())
+		errorMessage(ctx, http.StatusBadRequest, err.Error())
 		return
 	}
 
-	opening := schemas.Openings{
+	vaga := schemas.Vagas{
 		Role:     request.Role,
 		Company:  request.Company,
 		Location: request.Location,
@@ -32,11 +32,11 @@ func CreateOpening(ctx *gin.Context) {
 	}
 
 	//Faço a conexão com o banco
-	err := db.Create(&opening).Error
+	err = db.Create(&vaga).Error
 	if err != nil {
 		logger.Errorf("erro ao criar a vaga: %v", err.Error())
 		errorMessage(ctx, http.StatusInternalServerError, "erro ao criar a vaga no banco de dados")
 		return
 	}
-	successMessage(ctx, "create-Opening", opening)
+	successMessage(ctx, "create-Vaga", vaga)
 }

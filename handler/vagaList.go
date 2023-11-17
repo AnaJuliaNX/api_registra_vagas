@@ -8,8 +8,8 @@ import (
 )
 
 // Mostra uma vaga
-func ListOpenings(ctx *gin.Context) {
-	openings := []schemas.Openings{}
+func VagaList(ctx *gin.Context) {
+	openings := []schemas.Vagas{}
 	err := db.Find(&openings).Error
 	if err != nil {
 		errorMessage(ctx, http.StatusInternalServerError, "erro ao listar as vagas")

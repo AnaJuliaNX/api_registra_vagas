@@ -7,7 +7,7 @@ import (
 )
 
 // Estrutura do banco de dados
-type Openings struct {
+type Vagas struct {
 	gorm.Model
 	Role     string
 	Company  string
@@ -18,7 +18,7 @@ type Openings struct {
 }
 
 // Estrutura que retono do banco e transformo em json
-type OpeningResponse struct {
+type VagasResponse struct {
 	ID        int64     `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
@@ -29,4 +29,13 @@ type OpeningResponse struct {
 	Remote    string    `json:"remote"`
 	Link      string    `json:"link"`
 	Salary    int64     `json:"salary"`
+}
+
+type Curriculos struct {
+	gorm.Model
+	Name     string
+	Age      int64
+	Level    string
+	Linkedin string
+	English  bool
 }

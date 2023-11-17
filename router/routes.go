@@ -11,12 +11,14 @@ func initializeRoutes(router *gin.Engine) {
 	handler.InitializeHandler()
 
 	//Para agrupar as rotas
-	v1 := router.Group("/api")
+	v1 := router.Group("/v1")
 	{
-		v1.POST("/opening/create", handler.CreateOpening)
-		v1.GET("/opening/show", handler.ShowOpening)
-		v1.GET("/openings/list", handler.ListOpenings)
-		v1.PUT("/opening/update", handler.UpdateOpening)
-		v1.DELETE("/opening/delete", handler.DeleteOpening)
+		v1.POST("/vagas/create", handler.VagaCreate)
+		v1.GET("/vagas/show", handler.VagaShow)
+		v1.GET("/vagas/list", handler.VagaList)
+		v1.PUT("/vagas/update", handler.VagaUpdate)
+		v1.DELETE("/vagas/delete", handler.VagaDelete)
+
+		v1.POST("/curriculos/create", handler.CurriculoCreate)
 	}
 }

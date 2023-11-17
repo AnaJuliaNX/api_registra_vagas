@@ -8,7 +8,7 @@ import (
 )
 
 // Mostra uma vaga
-func ShowOpening(ctx *gin.Context) {
+func VagaShow(ctx *gin.Context) {
 	//busca o ID na query (encontrado nos quer)
 	id := ctx.Query("id")
 
@@ -17,7 +17,7 @@ func ShowOpening(ctx *gin.Context) {
 		return
 	}
 
-	opening := schemas.Openings{}
+	opening := schemas.Vagas{}
 	err := db.First(&opening, id).Error
 	if err != nil {
 		errorMessage(ctx, http.StatusNotFound, "vaga não encontrada")

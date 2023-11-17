@@ -9,13 +9,13 @@ import (
 )
 
 // Deleta uma vaga
-func DeleteOpening(ctx *gin.Context) {
+func VagaDelete(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {
 		errorMessage(ctx, http.StatusBadRequest, naoPodesernulo("id", "queryParameter").Error())
 		return
 	}
-	opening := schemas.Openings{}
+	opening := schemas.Vagas{}
 	//busca os dados
 	err := db.First(&opening, id).Error
 	if err != nil {

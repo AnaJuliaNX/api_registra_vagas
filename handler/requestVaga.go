@@ -6,7 +6,7 @@ func naoPodesernulo(name, tipo string) error {
 	return fmt.Errorf("campo: %s do tipo %s é obrigatório", name, tipo)
 }
 
-type CreateOpeningRequest struct {
+type CreateVagaRequest struct {
 	Role     string  `json:"role"`
 	Company  string  `json:"company"`
 	Location string  `json:"location"`
@@ -15,7 +15,7 @@ type CreateOpeningRequest struct {
 	Salary   float64 `json:"salary"`
 }
 
-func (r *CreateOpeningRequest) Validate() error {
+func (r *CreateVagaRequest) Validate() error {
 
 	if r.Role == "" {
 		return naoPodesernulo("role", "string")
@@ -39,7 +39,7 @@ func (r *CreateOpeningRequest) Validate() error {
 }
 
 // Validação para o update
-type UpdateOpeningRequest struct {
+type UpdateVagaRequest struct {
 	Role     string `json:"role"`
 	Company  string `json:"company"`
 	Location string `json:"location"`
@@ -48,7 +48,7 @@ type UpdateOpeningRequest struct {
 	Salary   int64  `json:"salary"`
 }
 
-func (r *UpdateOpeningRequest) Validate() error {
+func (r *UpdateVagaRequest) Validate() error {
 	if r.Role != "" || r.Company != "" || r.Location != "" || r.Remote != nil || r.Link != "" || r.Salary > 0 {
 		return nil
 	}

@@ -8,8 +8,8 @@ import (
 )
 
 // Atualiza/edita uma vaga
-func UpdateOpening(ctx *gin.Context) {
-	request := UpdateOpeningRequest{}
+func VagaUpdate(ctx *gin.Context) {
+	request := UpdateVagaRequest{}
 
 	//Populo o meu request
 	ctx.BindJSON(&request)
@@ -30,7 +30,7 @@ func UpdateOpening(ctx *gin.Context) {
 	}
 
 	//populo o opening com as vagas
-	opening := schemas.Openings{}
+	opening := schemas.Vagas{}
 	//Procura o primeiro registro e ordena por chave primária
 	err = db.First(&opening, id).Error
 	if err != nil {
