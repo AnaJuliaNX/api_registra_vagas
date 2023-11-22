@@ -28,6 +28,59 @@ const docTemplate = `{
                     "vaga"
                 ],
                 "summary": "Create vagas",
+                "parameters": [
+                    {
+                        "description": "Vaga body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.CreateVagaRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "label:Nivel|type:string|required",
+                        "name": "Nivel",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "label:Empresa|type:string|required",
+                        "name": "Empresa",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "label:Localizacao|type:string|required",
+                        "name": "Localizacao",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "label:Presencial|type:bool|required",
+                        "name": "Presencial",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "label:Link|type:string|required",
+                        "name": "Link",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "number",
+                        "description": "label:Salario|type:float64|required",
+                        "name": "Salario",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -49,9 +102,205 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/vagas/delete": {
+            "delete": {
+                "description": "código para deletar uma vaga",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vaga"
+                ],
+                "summary": "Delete vaga",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "label:ID|type:int64|required",
+                        "name": "ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.CreateVagaResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/vagas/list": {
+            "get": {
+                "description": "código para listar as vagas",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vaga"
+                ],
+                "summary": "Listar vagas",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.CreateVagaResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/vagas/show": {
+            "get": {
+                "description": "código para buscar uma vaga pelo ID especificado na rota",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vaga"
+                ],
+                "summary": "Mostra uma vaga pelo ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "label:ID|type:int64|required",
+                        "name": "ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.CreateVagaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/vagas/update": {
+            "put": {
+                "description": "código para deletar uma vaga",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "vaga"
+                ],
+                "summary": "Update vaga",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "label:ID|type:int64|required",
+                        "name": "ID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.CreateVagaResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
+        "handler.CreateVagaRequest": {
+            "type": "object",
+            "properties": {
+                "empresa": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "localizacao": {
+                    "type": "string"
+                },
+                "nivel": {
+                    "type": "string"
+                },
+                "presencial": {
+                    "type": "boolean"
+                },
+                "salario": {
+                    "type": "number"
+                }
+            }
+        },
         "handler.CreateVagaResponse": {
             "type": "object",
             "properties": {

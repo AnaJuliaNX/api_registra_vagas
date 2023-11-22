@@ -30,20 +30,3 @@ type VagasResponse struct {
 	Link        string    `json:"link"`
 	Salario     int64     `json:"salario"`
 }
-
-type Candidaturas struct {
-	gorm.Model
-	Nome              string
-	Idade             int64
-	Nivel             string
-	Linkedin          string
-	LinguaEstrangeira bool
-}
-
-type CandidaturaREsponse struct {
-	Nome              string `json:"nome"`
-	Idade             int64  `json:"idade"`
-	Nivel             string `json:"nivel"`
-	Linkedin          string `json:"linkedin"`
-	LinguaEstrangeira string `json:"lingua_estrangeira"`
-}

@@ -1,4 +1,4 @@
-package handler
+package candidaturas
 
 import (
 	"net/http"
@@ -6,11 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 
 	handler "api_registraVagas/handler"
-	"api_registraVagas/schemas"
+	candidatura "api_registraVagas/schemas/candidaturas"
 )
 
 func CandidaturaList(ctx *gin.Context) {
-	candidaturas := []schemas.Candidaturas{}
+	candidaturas := []candidatura.Candidaturas{}
 	err := handler.DB.Find(&candidaturas).Error
 	if err != nil {
 		handler.ErrorMessage(ctx, http.StatusInternalServerError, "erro ao listar as candidaturas")

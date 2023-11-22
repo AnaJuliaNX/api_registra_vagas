@@ -1,11 +1,13 @@
 package config
 
 import (
-	"api_registraVagas/schemas"
 	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+
+	candidatura "api_registraVagas/schemas/candidaturas"
+	vagas "api_registraVagas/schemas/vagas"
 )
 
 func DatabaseInitialize() (*gorm.DB, error) {
@@ -34,7 +36,7 @@ func DatabaseInitialize() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&schemas.Vagas{}, &schemas.Candidaturas{})
+	err = db.AutoMigrate(&vagas.Vagas{}, &candidatura.Candidaturas{})
 	if err != nil {
 		logger.Errorf("Erro de automigração: %v", err)
 		return nil, err

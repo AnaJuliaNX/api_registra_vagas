@@ -1,11 +1,12 @@
 package handler
 
 import (
-	"api_registraVagas/schemas"
 	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	vagas "api_registraVagas/schemas/vagas"
 )
 
 // Código para exibir a mensagem de erro
@@ -34,6 +35,6 @@ type ErrorResponse struct {
 
 // Apenas para usar com o swagger (success message)
 type CreateVagaResponse struct {
-	Message string                `json:"message"`
-	Data    schemas.VagasResponse `json:"data"`
+	Message string              `json:"message"`
+	Data    vagas.VagasResponse `json:"data"`
 }

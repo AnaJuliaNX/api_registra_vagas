@@ -28,7 +28,7 @@ func initializeRoutes(router *gin.Engine) {
 		v1.PUT("/vagas/update", handlerVagas.VagaUpdate)
 		v1.DELETE("/vagas/delete", handlerVagas.VagaDelete)
 
-		v1.POST("/candidaturas/create", handlerCandidaturas.CurriculoCreate)
+		v1.POST("/candidaturas/create", handlerCandidaturas.CandidaturaCreate)
 		v1.GET("/candidaturas/show", handlerCandidaturas.CandidaturaShow)
 		v1.GET("/candidaturas/list", handlerCandidaturas.CandidaturaList)
 		v1.PUT("/candidaturas/update", handlerCandidaturas.CandidaturaUpdate)

@@ -1,4 +1,4 @@
-package handler
+package candidaturas
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	handler "api_registraVagas/handler"
-	"api_registraVagas/schemas"
+	candidatura "api_registraVagas/schemas/candidaturas"
 )
 
 func CandidaturaUpdate(ctx *gin.Context) {
@@ -27,7 +27,7 @@ func CandidaturaUpdate(ctx *gin.Context) {
 		return
 	}
 
-	candidatura := schemas.Candidaturas{}
+	candidatura := candidatura.Candidaturas{}
 	err = handler.DB.First(&candidatura, id).Error
 	if err != nil {
 		handler.ErrorMessage(ctx, http.StatusNotFound, "candidatura não encontrada")

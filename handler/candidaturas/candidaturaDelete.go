@@ -1,4 +1,4 @@
-package handler
+package candidaturas
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	handler "api_registraVagas/handler"
-	"api_registraVagas/schemas"
+	candidatura "api_registraVagas/schemas/candidaturas"
 )
 
 func CandidaturaDelete(ctx *gin.Context) {
@@ -16,7 +16,7 @@ func CandidaturaDelete(ctx *gin.Context) {
 		handler.ErrorMessage(ctx, http.StatusBadRequest, emBrancoNao("id", "queryParameter").Error())
 		return
 	}
-	candidatura := schemas.Candidaturas{}
+	candidatura := candidatura.Candidaturas{}
 	//Busca os dados
 	err := handler.DB.First(&candidatura, id).Error
 	if err != nil {

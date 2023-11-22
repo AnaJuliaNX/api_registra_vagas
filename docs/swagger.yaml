@@ -1,4 +1,19 @@
 definitions:
+  handler.CreateVagaRequest:
+    properties:
+      empresa:
+        type: string
+      link:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      presencial:
+        type: boolean
+      salario:
+        type: number
+    type: object
   handler.CreateVagaResponse:
     properties:
       data:
@@ -45,6 +60,43 @@ paths:
       consumes:
       - application/json
       description: código para a criação de novas vagas
+      parameters:
+      - description: Vaga body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateVagaRequest'
+      - description: label:Nivel|type:string|required
+        in: formData
+        name: Nivel
+        required: true
+        type: string
+      - description: label:Empresa|type:string|required
+        in: formData
+        name: Empresa
+        required: true
+        type: string
+      - description: label:Localizacao|type:string|required
+        in: formData
+        name: Localizacao
+        required: true
+        type: string
+      - description: label:Presencial|type:bool|required
+        in: formData
+        name: Presencial
+        required: true
+        type: boolean
+      - description: label:Link|type:string|required
+        in: formData
+        name: Link
+        required: true
+        type: string
+      - description: label:Salario|type:float64|required
+        in: formData
+        name: Salario
+        required: true
+        type: number
       produces:
       - application/json
       responses:
@@ -61,6 +113,120 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create vagas
+      tags:
+      - vaga
+  /vagas/delete:
+    delete:
+      consumes:
+      - application/json
+      description: código para deletar uma vaga
+      parameters:
+      - description: label:ID|type:int64|required
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateVagaResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete vaga
+      tags:
+      - vaga
+  /vagas/list:
+    get:
+      consumes:
+      - application/json
+      description: código para listar as vagas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateVagaResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Listar vagas
+      tags:
+      - vaga
+  /vagas/show:
+    get:
+      consumes:
+      - application/json
+      description: código para buscar uma vaga pelo ID especificado na rota
+      parameters:
+      - description: label:ID|type:int64|required
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateVagaResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Mostra uma vaga pelo ID
+      tags:
+      - vaga
+  /vagas/update:
+    put:
+      consumes:
+      - application/json
+      description: código para deletar uma vaga
+      parameters:
+      - description: label:ID|type:int64|required
+        in: path
+        name: ID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateVagaResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update vaga
       tags:
       - vaga
 swagger: "2.0"

@@ -6,9 +6,22 @@ import (
 	"github.com/gin-gonic/gin"
 
 	handler "api_registraVagas/handler"
-	"api_registraVagas/schemas"
+	vagas "api_registraVagas/schemas/vagas"
 )
 
+// @BasePath /vagas/v1
+
+// @Summary Update vaga
+// @Description código para deletar uma vaga
+// @Tags vaga
+// @Accept json
+// @Produce json
+// @Param ID path string true "label:ID|type:int64|required"
+// @Success 200 {object} CreateVagaResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /vagas/update [put]
 // Atualiza/edita uma vaga
 func VagaUpdate(ctx *gin.Context) {
 	request := UpdateVagaRequest{}
@@ -32,7 +45,7 @@ func VagaUpdate(ctx *gin.Context) {
 	}
 
 	//populo vaga com as vagas do banco de dados
-	vaga := schemas.Vagas{}
+	vaga := vagas.Vagas{}
 	//Procura o primeiro registro e ordena por chave primária
 	err = handler.DB.First(&vaga, id).Error
 	if err != nil {

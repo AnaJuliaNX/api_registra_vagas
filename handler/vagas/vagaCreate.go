@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	handler "api_registraVagas/handler"
-	"api_registraVagas/schemas"
+	vagas "api_registraVagas/schemas/vagas"
 )
 
 // @BasePath /vagas/v1
@@ -16,7 +16,13 @@ import (
 // @Tags vaga
 // @Accept json
 // @Produce json
-// @Parama request body VagaCreate true "Vaga Request Body"
+// @Param request body CreateVagaRequest true "Vaga body"
+// @Param Nivel formData string true "label:Nivel|type:string|required"
+// @Param Empresa formData string true "label:Empresa|type:string|required"
+// @Param Localizacao formData string true "label:Localizacao|type:string|required"
+// @Param Presencial formData bool true "label:Presencial|type:bool|required"
+// @Param Link formData string true "label:Link|type:string|required"
+// @Param Salario formData float64 true "label:Salario|type:float64|required"
 // @Success 200 {object} CreateVagaResponse
 // @Failure 400 {object} ErrorResponse
 // @Failure 500 {object} ErrorResponse
@@ -35,7 +41,7 @@ func VagaCreate(ctx *gin.Context) {
 		return
 	}
 
-	vaga := schemas.Vagas{
+	vaga := vagas.Vagas{
 		Nivel:       request.Nivel,
 		Empresa:     request.Empresa,
 		Localizacao: request.Localizacao,
