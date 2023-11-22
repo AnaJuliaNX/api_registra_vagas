@@ -1,0 +1,66 @@
+definitions:
+  handler.CreateVagaResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.VagasResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      errorCode:
+        type: string
+      message:
+        type: string
+    type: object
+  schemas.VagasResponse:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        description: se for false ou não tiver o campo ele é omitido
+        type: string
+      empresa:
+        type: boolean
+      id:
+        type: integer
+      link:
+        type: string
+      localizacao:
+        type: string
+      nivel:
+        type: string
+      presencial:
+        type: string
+      salario:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /vagas/create:
+    post:
+      consumes:
+      - application/json
+      description: código para a criação de novas vagas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateVagaResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create vagas
+      tags:
+      - vaga
+swagger: "2.0"

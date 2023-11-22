@@ -34,7 +34,7 @@ func DatabaseInitialize() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&schemas.Vagas{})
+	err = db.AutoMigrate(&schemas.Vagas{}, &schemas.Candidaturas{})
 	if err != nil {
 		logger.Errorf("Erro de automigração: %v", err)
 		return nil, err
